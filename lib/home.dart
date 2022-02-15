@@ -16,7 +16,11 @@ class _HomeState extends State<Home> {
           color: Colors.grey,
         ),
         backgroundColor: Colors.white,
-        title: const Text("Youtobs"),
+        title: Image.asset(
+          "images/youtube.png",
+          width: 98,
+          height: 22,
+        ),
         actions:  <Widget>[
           IconButton(
             onPressed: ()
