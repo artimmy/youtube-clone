@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/screens/app_home.dart';
+import 'package:youtube_clone/screens/library.dart';
+import 'package:youtube_clone/screens/new.dart';
+import 'package:youtube_clone/screens/subscriptions.dart';
 
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
@@ -8,9 +12,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  // Index integer to be used on the BottomNavigationBar
+  int _navBarIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> screens = [
+      const AppHome(),
+      const New(),
+      const Subscriptions(),
+      const Library(),
+    ];
+
     return Scaffold(
+
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.grey,
@@ -45,7 +62,40 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: Container(),
+
+      body: screens[_navBarIndex],
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _navBarIndex,
+        onTap: (index)
+        {
+          setState(()
+          {
+            _navBarIndex = index;
+          });
+        },
+        type: BottomNavigationBarType.fixed,
+        fixedColor: Colors.red,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home), 
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.whatshot), 
+            label: "New",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.subscriptions), 
+            label: "Subscriptions",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.video_library), 
+            label: "Library",
+          ),
+        ],
+      ),
+
     );
   }
 }
