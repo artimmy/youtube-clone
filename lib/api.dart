@@ -15,7 +15,7 @@ class Api
       BASE_URL + "search"
       "?part=snippet"
       "&type=video"
-      "&maxResults=5"
+      "&maxResults=10"
       "&order=date"
       "&key=$YOUTUBE_API_KEY"
       "&channelId=$CHANNEL_ID"
@@ -24,9 +24,21 @@ class Api
 
     if( get.statusCode == 200)
     {
-      List<Video> video;
+      // Getting the decoded data and storing it in a Map 'jsonData'
       Map<String, dynamic> jsonData = jsonDecode(get.body);
-      print(jsonData["items"][0]["snippet"]["title"].toString());
+
+      // Getting the decode data stored in 'jsonData' Map above and converting into a usefull List 'videos'
+      List<Video> videos = jsonData["items"].map<Video>(
+        /// Passing a map 'JsonData' to be converted into a list 'videos'
+        (passing_a_map_JsonData_ToBeConvertedIntoAList) => Video.fromJson(passing_a_map_JsonData_ToBeConvertedIntoAList)
+      ); 
+
+      /* for (var video in jsonData["items"])
+      {
+        print("${video.toString()}\n");
+      } */
+
+      print(jsonData["items"][2]["snippet"]["title"]);
     }
 
   }
