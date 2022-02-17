@@ -31,14 +31,19 @@ class Api
       List<Video> videos = jsonData["items"].map<Video>(
         /// Passing a map 'JsonData' to be converted into a list 'videos'
         (passing_a_map_JsonData_ToBeConvertedIntoAList) => Video.fromJson(passing_a_map_JsonData_ToBeConvertedIntoAList)
-      ); 
+      ).toList();
+
+      for(var video in videos)
+      {
+        print(video.title);
+      }
 
       /* for (var video in jsonData["items"])
       {
         print("${video.toString()}\n");
       } */
 
-      print(jsonData["items"][2]["snippet"]["title"]);
+      //print(jsonData["items"][2]["snippet"]["title"]);
     }
 
   }
