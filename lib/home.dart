@@ -42,28 +42,31 @@ class _HomeState extends State<Home> {
           IconButton(
             onPressed: ()
             {
-              debugPrint("video cam");
+              debugPrint("video");
             }, 
             icon: const Icon(Icons.videocam),
           ),
           IconButton(
             onPressed: ()
             {
-              debugPrint("search");
+              debugPrint("Search");
             }, 
             icon: const Icon(Icons.search),
           ),
           IconButton(
             onPressed: ()
             {
-              debugPrint("account");
+              debugPrint("Account");
             }, 
             icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
 
-      body: screens[_navBarIndex],
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: screens[_navBarIndex],
+      ),
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _navBarIndex,
