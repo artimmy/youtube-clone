@@ -8,13 +8,13 @@ const BASE_URL = "https://www.googleapis.com/youtube/v3/";
 
 class Api 
 {
-  search(String search) async
+  Future<List<Video>?> search(String search) async
   {
     http.Response get = await http.get(Uri.parse(
       BASE_URL + "search"
       "?part=snippet"
       "&type=video"
-      "&maxResults=10"
+      "&maxResults=50"
       "&order=date"
       "&key=$YOUTUBE_API_KEY"
       "&channelId=$CHANNEL_ID"
@@ -28,22 +28,27 @@ class Api
 
       // Getting the decode data stored in 'jsonData' Map above and converting into a usefull List 'videos'
       List<Video> videos = jsonData["items"].map<Video>(
-        /// Passing a map 'JsonData' to be converted into a list 'videos'
+        // Passing a map 'JsonData' to be converted into a list 'videos'
         (passing_a_map_JsonData_ToBeConvertedIntoAList) => Video.fromJson(passing_a_map_JsonData_ToBeConvertedIntoAList)
       ).toList();
-
-      for(var video in videos)
+      
+      return videos;
+      
+      /*// Uncomment for testing ><><<><
+       for(var video in videos)
       {
         print(video.title);
       }
-
-      /* for (var video in jsonData["items"])
+      for (var video in jsonData["items"])
       {
         print("${video.toString()}\n");
-      } */
-
-      //print(jsonData["items"][2]["snippet"]["title"]);
+      } 
+      print(jsonData["items"][2]["snippet"]["title"]);
+      */
     }
-
+    else
+    {
+      print("Something went wrong returning List<Video> videos on file lib/api.dart");
+    }
   }
 }
