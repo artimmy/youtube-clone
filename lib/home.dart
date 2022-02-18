@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_clone/custom_search_delegate.dart';
 import 'package:youtube_clone/screens/app_home.dart';
 import 'package:youtube_clone/screens/library.dart';
 import 'package:youtube_clone/screens/new.dart';
@@ -39,27 +40,33 @@ class _HomeState extends State<Home> {
           height: 22,
         ),
         actions:  <Widget>[
+          
           IconButton(
+            onPressed: () async
+            {
+              // Might return null so 'String?' 
+              String? res = await showSearch(context: context, delegate: CustomSearchDelegate());
+            }, 
+            icon: const Icon(Icons.search),
+          ),
+
+          /* IconButton(
             onPressed: ()
             {
               debugPrint("video");
             }, 
             icon: const Icon(Icons.videocam),
           ),
-          IconButton(
-            onPressed: ()
-            {
-              debugPrint("Search");
-            }, 
-            icon: const Icon(Icons.search),
-          ),
+          
           IconButton(
             onPressed: ()
             {
               debugPrint("Account");
             }, 
             icon: const Icon(Icons.account_circle),
-          ),
+          ), */
+
+
         ],
       ),
 
