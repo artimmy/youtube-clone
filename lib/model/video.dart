@@ -14,8 +14,9 @@ class Video
     return Video(
       id: list["id"]["videoId"],
       title: list["snippet"]["title"],
+      description: list["snippet"]["description"],
       thumbnail: list["snippet"]["thumbnails"]["high"]["url"],
-      channel: list["snippet"]["channelId"]
+      channel: list["snippet"]["channelTitle"]
     );
 
   }
