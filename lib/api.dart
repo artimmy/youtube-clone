@@ -14,10 +14,10 @@ class Api
       BASE_URL + "search"
       "?part=snippet"
       "&type=video"
-      "&maxResults=50"
+      "&maxResults=5"
       "&order=date"
       "&key=$YOUTUBE_API_KEY"
-      "&channelId=$CHANNEL_ID"
+      //"&channelId=$CHANNEL_ID"
       "&q=$search"
     ));
 
