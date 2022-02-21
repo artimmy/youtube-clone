@@ -5,23 +5,27 @@ import 'package:youtube_clone/screens/library.dart';
 import 'package:youtube_clone/screens/new.dart';
 import 'package:youtube_clone/screens/subscriptions.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatefulWidget 
+{
   const Home({ Key? key }) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
-
+class _HomeState extends State<Home> 
+{
   // Index integer to be used on the BottomNavigationBar
   int _navBarIndex = 0;
+  // Crating a var '_queryResult' to store the search result 'res'
+  String? _queryResult = "";
 
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) 
+  {
     List<Widget> screens = [
-      const AppHome(),
+      // Search result '_queryResult' being sent to the api via constructor
+      AppHome( _queryResult! ),
       const New(),
       const Subscriptions(),
       const Library(),
@@ -39,14 +43,16 @@ class _HomeState extends State<Home> {
           width: 98,
           height: 22,
         ),
-        actions:  <Widget>[
-          
+        actions: <Widget>[
+
           IconButton(
             onPressed: () async
             {
-              // Might return null so 'String?' 
+              // Might return null so 'String?' | Creating a search bar to return 'res' 
               String? res = await showSearch(context: context, delegate: CustomSearchDelegate());
-            }, 
+              // Sending our little res on a adventure...
+              setState( () => _queryResult = res! );
+            },
             icon: const Icon(Icons.search),
           ),
 
@@ -66,7 +72,6 @@ class _HomeState extends State<Home> {
             icon: const Icon(Icons.account_circle),
           ), */
 
-
         ],
       ),
 
@@ -79,28 +84,25 @@ class _HomeState extends State<Home> {
         currentIndex: _navBarIndex,
         onTap: (index)
         {
-          setState(()
-          {
-            _navBarIndex = index;
-          });
+          setState( () => _navBarIndex = index );
         },
         type: BottomNavigationBarType.fixed,
         fixedColor: Colors.red,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
+            icon: Icon(Icons.home),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.whatshot), 
+            icon: Icon(Icons.whatshot),
             label: "New",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.subscriptions), 
+            icon: Icon(Icons.subscriptions),
             label: "Subscriptions",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.video_library), 
+            icon: Icon(Icons.video_library),
             label: "Library",
           ),
         ],
