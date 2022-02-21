@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/custom_search_delegate.dart';
-import 'package:youtube_clone/screens/app_home.dart';
+import 'package:youtube_clone/screens/start.dart';
 import 'package:youtube_clone/screens/library.dart';
 import 'package:youtube_clone/screens/new.dart';
 import 'package:youtube_clone/screens/subscriptions.dart';
@@ -25,7 +25,7 @@ class _HomeState extends State<Home>
   {
     List<Widget> screens = [
       // Search result '_queryResult' being sent to the api via constructor
-      AppHome( _queryResult! ),
+      Start( _queryResult! ),
       const New(),
       const Subscriptions(),
       const Library(),

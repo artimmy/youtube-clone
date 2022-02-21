@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:youtube_clone/api.dart';
 import 'package:youtube_clone/model/video.dart';
 
-class AppHome extends StatefulWidget {
+class Start extends StatefulWidget {
 
   late String query;
   // Receiving res 'query' via constructor.
-  AppHome( this.query ,{ Key? key }) : super(key: key);
+  Start( this.query ,{ Key? key }) : super(key: key);
 
   @override
-  _AppHomeState createState() => _AppHomeState();
+  _StartState createState() => _StartState();
 }
 
-class _AppHomeState extends State<AppHome> {
+class _StartState extends State<Start> {
 
   _listVideos(String query)
   {
