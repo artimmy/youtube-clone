@@ -3,7 +3,10 @@ import 'package:youtube_clone/api.dart';
 import 'package:youtube_clone/model/video.dart';
 
 class AppHome extends StatefulWidget {
-  const AppHome({ Key? key }) : super(key: key);
+
+  late String query;
+  // Receiving res 'query' via constructor.
+  AppHome( this.query ,{ Key? key }) : super(key: key);
 
   @override
   _AppHomeState createState() => _AppHomeState();
@@ -11,17 +14,18 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
 
-  _listVideos()
+  _listVideos(String query)
   {
     Api api = Api();
-    return api.search(""); // here should be res
+    // 'res' is passed, here, to the api, with the name of 'query'.
+    return api.search(query); 
   }
 
   @override
   Widget build(BuildContext context) {
 
     return FutureBuilder<List<Video>?>(
-      future: _listVideos(),
+      future: _listVideos(widget.query),
       builder: (context, snapshot)
       {
         switch (snapshot.connectionState) 
