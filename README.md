@@ -1,6 +1,15 @@
-# youtube_clone
+# Youtube Clone
 
-A new Flutter project.
+A Flutter project using Youtube's Api.
+
+## In order to run this project use:
+
+`flutter run --no-sound-null-safety`
+
+More info about "null safety" see:
+[Unsound null safety](https://dart.dev/null-safety/unsound-null-safety#testing-or-running-mixed-version-programs)
+
+***
 
 ## Getting Started
 
