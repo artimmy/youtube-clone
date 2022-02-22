@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/api.dart';
 import 'package:youtube_clone/model/video.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
+import 'package:youtube_clone/secrets.dart';
 
 class Start extends StatefulWidget {
 
@@ -46,22 +48,32 @@ class _StartState extends State<Start> {
                   List<Video>? videos = snapshot.data;
                   Video video = videos![ index ];
 
-                  return Column(
-                    children: <Widget>[
-                      Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(video.thumbnail.toString()),
+                  return GestureDetector(
+                    onTap: ()
+                    {
+                      FlutterYoutube.playYoutubeVideoById(
+                        apiKey: YOUTUBE_API_KEY,
+                        videoId: video.id,
+                        autoPlay: true,
+                      );
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(video.thumbnail.toString()),
+                            ),
                           ),
                         ),
-                      ),
-                      ListTile(
-                        title: Text(video.title.toString()),
-                        subtitle: Text(video.channel.toString()),
-                      )
-                    ],
+                        ListTile(
+                          title: Text(video.title.toString()),
+                          subtitle: Text(video.channel.toString()),
+                        )
+                      ],
+                    ),
                   ); 
                 },
                 separatorBuilder: (context, index) => const Divider(
